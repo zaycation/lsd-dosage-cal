@@ -6,8 +6,6 @@ import {
 	Image,
 	FormControl,
 	InputGroup,
-	ToggleButtonGroup,
-	ToggleButton,
 } from 'react-bootstrap';
 
 import './App.css';
@@ -20,14 +18,14 @@ function App() {
 		requiredDose: 500,
 		doseType: 'μg',
 	});
-	const [value, setValue] = useState([1, 2]);
 	/*
+	const [value, setValue] = useState([1, 2]);
 	 * The second argument that will be passed to
 	 * `handleChange` from `ToggleButtonGroup`
 	 * is the SyntheticEvent object, but we are
 	 * not using it in this example so we will omit it.
-	 */
 	const handleChange = val => setValue(val);
+	*/
 
 	const updateForm = e => {
 		setForm({
