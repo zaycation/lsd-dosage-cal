@@ -128,7 +128,7 @@ function App() {
 								{form.doseType}
 							</h5>
 							<h6>
-								to feel the proper effects as your{' '}
+								to feel the proper effects of your{' '}
 								<strong>next desired dose</strong>
 							</h6>
 							{/*
