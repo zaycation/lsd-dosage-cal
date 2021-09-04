@@ -41,8 +41,8 @@ function App() {
 				Math.pow(parseInt(form.daysSince), -0.412565956) -
 				parseInt(form.lastDose) +
 				parseInt(form.nextDose)) /
-				100,
-		) * 100;
+				50,
+		) * 50;
 
 	/*
 			requiredDose formula
