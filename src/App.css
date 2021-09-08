@@ -24,6 +24,11 @@
 	font-weight: 800;
 }
 
+.header-txt2 {
+	font-weight: 800;
+	color: teal;
+}
+
 .main-border {
 	border: 4px solid white;
 	background: #fff;
@@ -34,11 +39,31 @@
 }
 
 .anchor-link {
-  color: white;
-  text-decoration: none !important;
+	color: white;
+	text-decoration: none !important;
 }
 
 .anchor-link:hover {
-  color: teal;
-  background: #fff;
+	color: teal;
+	background: #fff;
+}
+
+.slide-color {
+	color: green !important;
+}
+
+input[type='range'] {
+	overflow: hidden;
+	-webkit-appearance: none;
+}
+
+input[type='range']::-webkit-slider-runnable-track {
+	-webkit-appearance: none;
+	color: #13bba4;
+}
+
+input[type='range']::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	cursor: ew-resize;
+	background: teal;
 }

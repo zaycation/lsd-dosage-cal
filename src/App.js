@@ -4,6 +4,7 @@ import {
 	Row,
 	Col,
 	Image,
+	Form,
 	FormControl,
 	InputGroup,
 } from 'react-bootstrap';
@@ -13,19 +14,15 @@ import './App.css';
 function App() {
 	const [form, setForm] = useState({
 		lastDose: 150,
-		nextDose: 200,
-		daysSince: 5,
-		requiredDose: 500,
+		nextDose: 150,
+		daysSince: 2,
+		requiredDose: 0,
 		doseType: 'μg',
+		active1: 'active',
+		active2: '',
+		leftBtnColor: 'dark',
+		rightBtnColor: 'outline-dark',
 	});
-	/*
-	const [value, setValue] = useState([1, 2]);
-	 * The second argument that will be passed to
-	 * `handleChange` from `ToggleButtonGroup`
-	 * is the SyntheticEvent object, but we are
-	 * not using it in this example so we will omit it.
-	const handleChange = val => setValue(val);
-	*/
 
 	const updateForm = e => {
 		setForm({
@@ -41,22 +38,8 @@ function App() {
 				Math.pow(parseInt(form.daysSince), -0.412565956) -
 				parseInt(form.lastDose) +
 				parseInt(form.nextDose)) /
-				50,
-		) * 50;
-
-	/*
-			requiredDose formula
-	form.requiredDose =
-		Math.round(
-			((form.lastDose / 100) *
-				280.059565 *
-				Math.pow(form.daysSince, -0.412565956) -
-				form.lastDose +
-				form.nextDose) /
-				100,
-		) * 100;
-
-	*/
+				10,
+		) * 10;
 
 	return (
 		<>
@@ -82,7 +65,7 @@ function App() {
 					<Col xs={12} md={6}>
 						<div className='d-flex align-items-center justify-content-between mt-3'>
 							<p>Last Dose:</p>
-							<InputGroup className='mb-3 form-container'>
+							<InputGroup className='mb-1 form-container'>
 								<FormControl
 									id='inlineFormInputGroup'
 									value={form.lastDose}
@@ -93,9 +76,18 @@ function App() {
 								<InputGroup.Text>{form.doseType}</InputGroup.Text>
 							</InputGroup>
 						</div>
+						<Form.Range
+							className='mb-1 slide-color'
+							value={form.lastDose}
+							onChange={updateForm}
+							name='lastDose'
+							type='number'
+							max={500}
+							min={50}
+						/>
 						<div className='d-flex align-items-center justify-content-between'>
 							<p>Next Desired Dose:</p>
-							<InputGroup className='mb-3 form-container'>
+							<InputGroup className='mb-1 form-container'>
 								<FormControl
 									id='inlineFormInputGroup'
 									value={form.nextDose}
@@ -106,9 +98,18 @@ function App() {
 								<InputGroup.Text>{form.doseType}</InputGroup.Text>
 							</InputGroup>
 						</div>
-						<div className='d-flex align-items-center justify-content-between mb-3'>
+						<Form.Range
+							className='mb-1'
+							value={form.nextDose}
+							onChange={updateForm}
+							name='nextDose'
+							type='number'
+							max={500}
+							min={50}
+						/>
+						<div className='d-flex align-items-center justify-content-between mb-1'>
 							<p>Time Since Last Consumption:</p>
-							<InputGroup className='mb-3 form-container'>
+							<InputGroup className='mb-1 form-container'>
 								<FormControl
 									id='inlineFormInputGroup'
 									value={form.daysSince}
@@ -119,30 +120,53 @@ function App() {
 								<InputGroup.Text>days</InputGroup.Text>
 							</InputGroup>
 						</div>
+						<Form.Range
+							className='mb-1'
+							value={form.daysSince}
+							onChange={updateForm}
+							name='daysSince'
+							type='number'
+							max={31}
+							min={0}
+						/>
 					</Col>
 					<Col>
-						<div className='d-flex flex-column align-items-center mt-1'>
-							<h6 className='my-3'>You will need a dose of</h6>
-							<h5 className='mb-3 header-txt'>
+						<div className='d-flex flex-column align-items-center mt-5'>
+							<h5 className='my-3'>You will need a dose of</h5>
+							<h3 className='mb-3 header-txt2'>
 								{parseInt(form.requiredDose)}
 								{form.doseType}
-							</h5>
-							<h6>
+							</h3>
+							<h5>
 								to feel the proper effects of your{' '}
 								<strong>next desired dose</strong>
-							</h6>
+							</h5>
 							{/*
-							<ToggleButtonGroup
-								type='checkbox'
-								value={value}
-								onChange={handleChange}>
-								<ToggleButton id='tbg-btn-1' value={1}>
+							<div className='d-flex align-items-center'>
+								<Button
+									variant={form.leftBtnColor}
+									className='me-4'
+									onClick={() => {
+										setForm(
+											form.leftBtnColor === 'dark' &&
+												form.rightBtnColor === 'outline-dark' &&
+												form.doseType === 'μg',
+										);
+									}}>
 									LSD (μg)
-								</ToggleButton>
-								<ToggleButton id='tbg-btn-2' value={2}>
+								</Button>
+								<Button
+									variant={form.rightBtnColor}
+									onClick={() => {
+										setForm(
+											form.leftBtnColor === 'outline-dark' &&
+												form.rightBtnColor === 'dark' &&
+												form.doseType === 'g',
+										);
+									}}>
 									Shrooms (g)
-								</ToggleButton>
-							</ToggleButtonGroup>
+								</Button>
+							</div>
 							*/}
 						</div>
 					</Col>
